@@ -49,8 +49,8 @@ class cHoster(iHoster):
     def getPattern(self):
         return ''
     
-    def __getIdFromUrl(self, sUrl):
-        sPattern = 'vid=([0-9]+)'
+    def __getIdFromUrl(self, sUrl):#correction ancienne url >> embed depreciated
+        sPattern = '\/\/(?:tune|embed.tune).[a-z]{2}\/(?:play/|video/|embed\?videoid=|vid=)([0-9]+)'
         oParser = cParser()
         aResult = oParser.parse(sUrl, sPattern)
         if (aResult[0] == True):
@@ -66,7 +66,7 @@ class cHoster(iHoster):
 
     def __getUrl(self, media_id):
         return
-    
+
     def getMediaLink(self):
         return self.__getMediaLinkForGuest()
 
@@ -76,34 +76,20 @@ class cHoster(iHoster):
         url = []
         qua = []
         id = self.__getIdFromUrl(self.__sUrl)
-        
-        sUrl = 'https://embed.tune.pk/play/' + id  + '?autoplay=no&ssl=yes&inline=true'
+
+        sUrl = "https://tune.pk/video/" + id 
 
         oRequest = cRequestHandler(sUrl)
         sHtmlContent1 = oRequest.request()
 
-        sPattern = '<meta itemprop="videoQuality" content="(.+?)".+?<meta itemprop="contentURL" content="([^"]+)"'
-        aResult = oParser.parse(sHtmlContent1, sPattern)
-        if (aResult[0] == True):
-            url.append(aResult[1][0][1])
-            qua.append(aResult[1][0][0] + '  mp4')
-
-        sPattern = "var requestURL *= *'([^']+)';.+?\"X-secret-Header\":\"(.+?)\"}"
-        aResult = oParser.parse(sHtmlContent1, sPattern)
-        if (aResult[0] == True):
-            vUrl = aResult[1][0][0]
-            Secret = aResult[1][0][1]
-            oRequest = cRequestHandler(vUrl)
-            oRequest.addHeaderEntry('User-Agent', UA)
-            oRequest.addHeaderEntry('X-secret-Header', Secret)
-            sHtmlContent = oRequest.request()
-
+        aResult = oParser.abParse(sHtmlContent1, 'new TunePlayer(', ',"video":', 15)
+        if (aResult):
+            sHtmlContent = aResult + '}}'
             sHtmlContent = cUtil().removeHtmlTags(sHtmlContent)
             sHtmlContent = cUtil().unescape(sHtmlContent)
-        
-            content = json.loads(sHtmlContent)
-            content = content["data"]["details"]["player"]
 
+            content = json.loads(sHtmlContent)
+            content = content["details"]["player"]
             if content:
                 for x in content['sources']:
                     if 'Auto' in str(x['label']):
