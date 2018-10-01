@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.patch" name="&#926; Dlm3u8 patch &#926;" version="0.0.1" provider-name="johngf">
+	<requires>
+		<import addon="plugin.video.vstream" />
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="addon.py">
+		<provides>video</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary lang="fr_FR">Patch pour vStream</summary>
+		<description lang="fr_FR">Permet de lire les m3u8 sans coupure,ni freeze.[CR]Host pris en charge: netu,rutube,tune,vidlox,jawcloud.[CR]Souris: clic droit[CR]Clavier: touche c[CR]Android: clic maintenu[CR]Sur le lien [COLOR skyblue]final[/COLOR] >> dl/play/reprise</description>
+        <disclaimer lang="fr_FR">Si l'option dl/play/reprise disparait du menu après une maj[CR]Appliquer le patch de nouveau >> un clic suffit</disclaimer>
+	</extension>
+</addon>
