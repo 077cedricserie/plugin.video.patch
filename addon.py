@@ -26,7 +26,7 @@ class main:
     def __init__(self):
         addons = xbmcaddon.Addon('plugin.video.patch')
         service_time = addons.getSetting('service_time')
-        xbmc.log('\t[PLUGIN] patch: '+str(service_time), xbmc.LOGNOTICE)
+        #xbmc.log('\t[PLUGIN] patch: '+str(service_time), xbmc.LOGNOTICE)
         if not (service_time):
             addons.setSetting('service_time', str(datetime.datetime.now()))
             self.run()
