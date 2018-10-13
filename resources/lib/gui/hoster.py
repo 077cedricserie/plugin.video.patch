@@ -323,6 +323,8 @@ class cHosterGui:
             return self.getHoster('soundcloud')
         if ('mixcloud' in sHostName):
             return self.getHoster('mixcloud')
+        if ('ddlfr' in sHostName):
+            return self.getHoster('ddlfr')
 
         #Lien telechargeable a convertir en stream
         if ('1fichier' in sHostName):
