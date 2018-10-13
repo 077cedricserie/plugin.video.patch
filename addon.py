@@ -8,7 +8,7 @@ HEADERS = { 'User-Agent' : UA }
 
 addon = xbmcaddon.Addon(id='plugin.video.vstream')
 rootDir = addon.getAddonInfo('path')
-writeDir = xbmc.translatePath(rootDir + "/").decode("utf-8")
+writeDir = xbmc.translatePath(rootDir + "/")
 
 URL_MAIN = "https://raw.githubusercontent.com/johngf/plugin.video.patch/master/"
 
