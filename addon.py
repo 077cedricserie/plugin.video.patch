@@ -6,8 +6,10 @@ import datetime, time
 UA = 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:61.0) Gecko/20100101 Firefox/61.0'
 HEADERS = { 'User-Agent' : UA }
 
-addon = "special://home/userdata/addon_data/plugin.video.vstream/"
-writeDir = xbmc.translatePath(addon).decode("utf-8")
+addon = xbmcaddon.Addon(id='plugin.video.vstream')
+rootDir = addon.getAddonInfo('path')
+writeDir = xbmc.translatePath(rootDir + "/").decode("utf-8")
+
 URL_MAIN = "https://raw.githubusercontent.com/johngf/plugin.video.patch/master/"
 
 list_urls = ["default.py",
