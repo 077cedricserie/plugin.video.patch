@@ -1,32 +1,29 @@
 # -*- coding: utf-8 -*-
-#import sys
 import xbmcaddon,xbmc,xbmcvfs,xbmcgui
-#import xbmcplugin
 import urllib2
 import datetime, time
-UA = 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:61.0) Gecko/20100101 Firefox/61.0'
-HEADERS = { 'User-Agent' : UA } 
-    
-addon = xbmcaddon.Addon(id='plugin.video.vstream')
-rootDir = addon.getAddonInfo('path')
-writeDir = xbmc.translatePath("/".join([rootDir ,'resources/']))
 
-URL_MAIN = "https://raw.githubusercontent.com/johngf/plugin.video.patch/master/resources/"
+UA = 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:61.0) Gecko/20100101 Firefox/61.0'
+HEADERS = { 'User-Agent' : UA }
+
+addon = "special://home/userdata/addon_data/plugin.video.vstream/"
+writeDir = xbmc.translatePath(addon).decode("utf-8")
+URL_MAIN = "https://raw.githubusercontent.com/johngf/plugin.video.patch/master/"
 
 list_urls = ["default.py",
-            "lib/dlm3u8.py",
-            "lib/gui/hoster.py",
-            "hosters/jawcloud.py",
-            "hosters/netu.py",
-            "hosters/rutube.py",
-            "hosters/vidlox.py",
-            "hosters/tune.py"]
+            "resources/lib/dlm3u8.py",
+            "resources/lib/gui/hoster.py",
+            "resources/hosters/jawcloud.py",
+            "resources/hosters/netu.py",
+            "resources/hosters/rutube.py",
+            "resources/hosters/vidlox.py",
+            "resources/hosters/tune.py"]
 
 class main:
     def __init__(self):
         addons = xbmcaddon.Addon('plugin.video.patch')
         service_time = addons.getSetting('service_time')
-        #xbmc.log('\t[PLUGIN] patch: '+str(service_time), xbmc.LOGNOTICE)
+
         if not (service_time):
             addons.setSetting('service_time', str(datetime.datetime.now()))
             self.run()
