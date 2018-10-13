@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="plugin.video.patch" name="&#926; Dlm3u8 patch &#926;" version="0.0.1" provider-name="johngf">
+<addon id="plugin.video.patch" name="&#926; Dlm3u8 patch &#926;" version="0.0.2" provider-name="johngf">
 	<requires>
 		<import addon="plugin.video.vstream" />
 	</requires>
