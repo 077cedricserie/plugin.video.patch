@@ -10,4 +10,6 @@ Clavier: touche c
 
 Android: clic maintenu
 
+Télécommande touche menu (normalement)
+
 Sur le lien final >> dl/play/reprise
